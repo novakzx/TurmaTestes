@@ -84,7 +84,8 @@ router.post('/register', authLimiter, validateBody(registerSchema), (req, res) =
   audit(req, 'auth.register', 'ok', `username=${d.username}`, id);
   const user = db.prepare('SELECT * FROM users WHERE id = ?').get(id);
   setAuthCookie(res, signToken(user));
-  res.status(201).json({ user: publicUser(user) });
+  // token também no corpo: fallback para browsers que bloqueiam cookies (iframes)
+  res.status(201).json({ user: publicUser(user), token: signToken(user) });
 });
 
 router.post('/login', authLimiter, validateBody(loginSchema), (req, res) => {
@@ -101,7 +102,7 @@ router.post('/login', authLimiter, validateBody(loginSchema), (req, res) => {
   db.prepare('UPDATE users SET last_seen_at = ? WHERE id = ?').run(nowIso(), user.id);
   audit(req, 'auth.login', 'ok', '', user.id);
   setAuthCookie(res, signToken(user));
-  res.json({ user: publicUser(user) });
+  res.json({ user: publicUser(user), token: signToken(user) });
 });
 
 router.post('/logout', requireAuth, (req, res) => {

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
-import { api } from '../api/client.js';
+import { api, setBearer } from '../api/client.js';
 
 const AuthContext = createContext(null);
 
@@ -17,18 +17,21 @@ export function AuthProvider({ children }) {
 
   const login = useCallback(async (identifier, password) => {
     const d = await api.post('/auth/login', { identifier, password });
+    if (d.token) setBearer(d.token); // fallback p/ browsers sem cookies (iframe)
     setUser(d.user);
     return d.user;
   }, []);
 
   const register = useCallback(async (payload) => {
     const d = await api.post('/auth/register', payload);
+    if (d.token) setBearer(d.token);
     setUser(d.user);
     return d.user;
   }, []);
 
   const logout = useCallback(async () => {
     try { await api.post('/auth/logout'); } catch { /* ignora */ }
+    setBearer(null);
     setUser(null);
   }, []);
 

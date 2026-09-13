@@ -6,8 +6,8 @@
 
 | Ameaça | Mitigação implementada |
 |---|---|
-| Roubo de sessão (XSS a ler token) | JWT em cookie **httpOnly + SameSite=Lax + Secure em produção**; o cliente nunca lê o token |
-| CSRF | Dupla submissão: mutações exigem header `x-csrf-token` == cookie `tm_csrf` **+** verificação do header `Origin` contra o host |
+| Roubo de sessão (XSS a ler token) | JWT em cookie **httpOnly + SameSite=Lax + Secure em produção**; modo fallback Bearer em `localStorage` documentado com o trade-off (acessível a XSS de script — aceitável apenas como fallback de compatibilidade; o modo cookie é o preferido) |
+| CSRF | Modo cookie: dupla submissão (`x-csrf-token` == cookie `tm_csrf`) **+** verificação de `Origin`. Modo Bearer: isento por natureza (header não forjável cross-origin sem CORS). Login/registo: Origin + rate limiting |
 | XSS armazenado | Conteúdo renderizado **sempre como texto/React nodes** (zero `dangerouslySetInnerHTML`); CSP `script-src 'self'`; sanitização de controlo/zero-width no servidor |
 | SQL injection | 100% de consultas parametrizadas (`prepare(...).run(...)`) + validação Zod de toda a entrada |
 | Força bruta / credential stuffing | `authLimiter` 25 tentativas/15 min por IP+conta; resposta de login idêntica para utilizador inexistente e palavra-passe errada |
@@ -26,7 +26,9 @@
 - **Palavras-passe:** bcrypt custo 12; política mínima 8 carateres com letras e números (Zod); alteração exige confirmação da atual; auditoria de tentativas.
 - **Tokens:** JWT HS256, TTL 12 h com **renovação deslizante** (reemite cookie a meio do TTL). Em produção recomenda-se o par *access 15 min + refresh 30 d com rotação e deteção de reuso* (roadmap F2).
 - **Cookies de sessão:** `httpOnly`, `sameSite=lax`, `secure` quando `NODE_ENV=production` ou `PUBLIC_URL` https, `path=/`.
-- **CSRF:** cookie `tm_csrf` (legível pelo JS) + header obrigatório em POST/PATCH/DELETE; verificação adicional de `Origin` (mesma origem, `localhost:5173` em dev, hosts `*.e2b.app` do ambiente de preview).
+- **Modo duplo de transporte do token (resiliência):**
+  1. *Cookie httpOnly* (preferido) + **CSRF por dupla submissão** (`x-csrf-token` == cookie `tm_csrf`) e verificação de `Origin`;
+  2. *Bearer token* em `localStorage` (fallback automático quando o browser bloqueia cookies — ex.: preview embebido em iframe com cookies de terceiros bloqueados). Neste modo o CSRF não se aplica: um site atacante não consegue definir o header `Authorization` sem CORS. O login/registo também devolve o token no corpo para bootstrap deste modo; esses dois endpoints são isentos de dupla-submissão mas mantêm **verificação de Origin + rate limiting** (mitigação de login CSRF).
 - **OAuth 2.0:** não incluído na v1; o desenho de produção prevê Google/Apple com PKCE e ligação a conta existente (roadmap F2).
 
 ## 3. Cabeçalhos de segurança (produção)
