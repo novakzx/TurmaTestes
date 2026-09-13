@@ -71,7 +71,7 @@ test('mutação sem token CSRF → 403', async () => {
 
 test('registo + sessão + perfil', async () => {
   const payload = {
-    email: 'teste@exemplo.pt', username: 'aluno.teste', password: 'Testando123',
+    email: 'aluno.teste@exemplo.pt', username: 'aluno.teste', password: 'Testando123',
     displayName: 'Aluno Teste', school: 'EB 2,3 de Teste', district: 'Lisboa',
     municipality: 'Lisboa', gradeYear: '9.º ano', course: '',
     consentTerms: true, consentPrivacy: true,
@@ -81,7 +81,7 @@ test('registo + sessão + perfil', async () => {
   assert.equal(r.data.user.username, 'aluno.teste');
   const me = await call('/users/me');
   assert.equal(me.data.user.username, 'aluno.teste');
-  assert.equal(me.data.user.email, 'teste@exemplo.pt');
+  assert.equal(me.data.user.email, 'aluno.teste@exemplo.pt');
 
   // registo sem consentimento é rejeitado
   const bad = await call('/auth/register', { method: 'POST', body: { ...payload, username: 'outro.aluno', consentTerms: false } });
