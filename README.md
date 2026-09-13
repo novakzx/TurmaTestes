@@ -46,8 +46,11 @@ npm test
 
 | Utilizador | Palavra-passe |
 |---|---|
+| `teste` | `Testar2026!` |
 | `maria.silva` | `Estudante2026!` |
-| (todas as contas seed) | `Estudante2026!` |
+| (restantes contas seed) | `Estudante2026!` |
+
+A conta `teste` ("Conta de Teste") chega com uma DM de boas-vindas da Equipa Turma+, alguns seguidos/seguidores e notificações por ler — ideal para explorar badges, tempo real e o fluxo de onboarding.
 
 O seed cria 12 perfis de todo o país (incl. Açores e Madeira), 20 publicações, sondagens, grupos de estudo, DMs e o calendário 2025–2027. Recriar: `npm run seed` (ou `npm --prefix server run reset`).
 

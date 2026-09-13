@@ -89,6 +89,8 @@ const FOLLOWS = [
   ['beatriz.almeida', 'turmamais'], ['beatriz.almeida', 'maria.silva'],
   ['diogo.carvalho', 'turmamais'], ['diogo.carvalho', 'joao.santos'],
   ['ines.pereira', 'turmamais'], ['ines.pereira', 'maria.silva'], ['ines.pereira', 'ana.costa'],
+  ['teste', 'turmamais'], ['teste', 'maria.silva'], ['teste', 'ana.costa'],
+  ['turmamais', 'teste'], ['maria.silva', 'teste'],
 ];
 
 export function ensureSeed({ force = false } = {}) {
@@ -128,6 +130,18 @@ export function ensureSeed({ force = false } = {}) {
       ]
     );
   }
+
+  // --- Conta de teste pública (para exploração) --------------------------------
+  ids['teste'] = insertReturningId(
+    `INSERT INTO users (email, username, display_name, password_hash, avatar_color, bio, school, district, municipality,
+       grade_year, course, role, consent_terms_at, consent_privacy_at, created_at, last_seen_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [
+      'teste@exemplo.pt', 'teste', 'Conta de Teste', bcrypt.hashSync('Testar2026!', 12), '#E11D48',
+      'Conta criada para testar o Turma+ — explora à vontade 🧪', '', '', '', '', '', 'student',
+      daysAgo(30), daysAgo(30), daysAgo(30), hoursAgo(1),
+    ]
+  );
 
   // --- Seguidores ----------------------------------------------------------------
   const insFollow = db.prepare('INSERT OR IGNORE INTO follows (follower_id, followee_id, created_at) VALUES (?, ?, ?)');
@@ -201,6 +215,12 @@ export function ensureSeed({ force = false } = {}) {
   mkMsg(d2, 'maria.silva', 'Combinado! Levo os resumos de Mat A 💚', hoursAgo(25));
   db.prepare('UPDATE conversation_members SET last_read_at = ? WHERE conversation_id = ? AND user_id = ?').run(hoursAgo(1), d2, ids['maria.silva']);
 
+  // DM de boas-vindas à conta de teste
+  const d3 = mkConv('dm', '', ['turmamais', 'teste']);
+  mkMsg(d3, 'turmamais', 'Olá! 👋 Bem-vindo(a) ao Turma+! Esta é a tua conta de teste — explora tudo à vontade.', hoursAgo(2));
+  mkMsg(d3, 'turmamais', 'Sugestões rápidas: 1) completa o teu perfil com escola, distrito e município para o calendário ganhar os feriados locais; 2) vai a Apoio e pede uma ficha (ex.: «como resolvo equações do 2.º grau?»); 3) exporta o calendário (.ics) para o telemóvel.', hoursAgo(2));
+  mkMsg(d3, 'turmamais', 'E isto chegou em tempo real via SSE 🔔 — abre Mensagens e vê o badge. Bons estudos! 🍀', hoursAgo(1.9));
+
   // --- Notificações para maria (demo de badges) ---------------------------------------
   const insNotif = db.prepare(
     `INSERT INTO notifications (user_id, type, actor_id, post_id, conversation_id, text, url, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
@@ -210,6 +230,7 @@ export function ensureSeed({ force = false } = {}) {
   insNotif.run(ids['maria.silva'], 'follow', ids['beatriz.almeida'], null, null, 'beatriz.almeida começou a seguir-te', '/perfil/beatriz.almeida', hoursAgo(5));
   insNotif.run(ids['maria.silva'], 'message', ids['joao.santos'], null, d1, 'joao.santos: A propósito, no fim de semana há jogo…', `/mensagens/${d1}`, hoursAgo(0.5));
   db.prepare('UPDATE notifications SET read_at = ? WHERE user_id = ? AND type = ?').run(hoursAgo(1), ids['maria.silva'], 'follow');
+  insNotif.run(ids['teste'], 'follow', ids['turmamais'], null, null, 'turmamais começou a seguir-te', '/perfil/turmamais', hoursAgo(1.8));
 
   // --- Ficha de estudo guardada (Apontamentos demo) ------------------------------------
   const eqFicha = KNOWLEDGE.find((k) => k.id === 'eq2grau').ficha;
