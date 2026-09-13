@@ -1,0 +1,20 @@
+{
+  "name": "turma-mais",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Turma+ — PWA para estudantes em Portugal: feed, calendário oficial, mensagens, apoio ao estudo e perfis.",
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "dev": "concurrently -n api,web -c blue,green \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "build": "npm --prefix client run build",
+    "start": "NODE_ENV=production npm --prefix server run start",
+    "seed": "npm --prefix server run seed",
+    "test": "npm --prefix server run test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,16 @@
+node_modules/
+dist/
+build/
+*.log
+.env
+.env.*
+!.env.example
+server/data/*.db
+server/data/*.db-journal
+server/data/*.secret
+server/data/vapid.json
+server/data/audit/*.log
+.DS_Store
+coverage/
+stats.html
+dev-dist/
