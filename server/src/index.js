@@ -14,7 +14,7 @@ if (seeded) console.log('[seed] dados de demonstração criados (conta demo: mar
 startReminderScheduler();
 
 const server = app.listen(config.port, '0.0.0.0', () => {
-  console.log(`🚀 Turma+ API em http://0.0.0.0:${config.port} (${config.env})`);
+  console.log(`Turma+ API em http://0.0.0.0:${config.port} (${config.env})`);
   if (config.serveClient) console.log(`   a servir o cliente PWA de ${config.clientDist}`);
 });
 

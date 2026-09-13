@@ -64,7 +64,7 @@ export default function Tutor() {
   const toggleSave = async (id, nowSaved) => {
     try {
       const d = await api.post(`/tutor/fichas/${id}/save`);
-      toast(d.saved ? 'Ficha guardada nos Apontamentos 📌' : 'Removida dos Apontamentos');
+      toast(d.saved ? 'Ficha guardada nos Apontamentos.' : 'Ficha removida dos Apontamentos.');
       if (result?.id === id) setResult((r) => ({ ...r, ficha: r.ficha, saved: d.saved }));
       const fresh = await api.get('/tutor/fichas?saved=1');
       setSaved(fresh.fichas);
@@ -76,7 +76,7 @@ export default function Tutor() {
     <div className="page-wide">
       <div className="page-head">
         <h1>Apoio ao estudo</h1>
-        <p>Fichas de estudo do currículo português, ferramentas de cálculo e planos — gratuito e disponível offline</p>
+        <p>Fichas de estudo, ferramentas de cálculo e planos de trabalho alinhados com o currículo português</p>
       </div>
 
       <Tabs
@@ -111,7 +111,7 @@ export default function Tutor() {
                 />
               </div>
               <div className="spread">
-                <span className="muted small">Ctrl/⌘ + Enter para gerar</span>
+                <span className="muted small">Ctrl + Enter para gerar</span>
                 <button className="btn btn-primary" onClick={() => ask()} disabled={busy || question.trim().length < 4}>
                   {busy ? <><Spinner size={16} /> A preparar…</> : <><IconBook size={17} /> Criar ficha de estudo</>}
                 </button>
@@ -165,7 +165,7 @@ export default function Tutor() {
                 <li>Guarda as melhores nos <strong>Apontamentos</strong> e revê antes do teste.</li>
               </ol>
               <p className="muted small mt-3">
-                As fichas seguem o currículo português (básico e secundário). Sem chatbots, sem esperas, sem custos.
+                As fichas seguem o currículo do ensino básico e secundário. O acesso é gratuito e funciona sem ligação à internet.
               </p>
             </div>
             <div className="card rail-card" style={{ display: 'block' }}>
@@ -197,7 +197,7 @@ export default function Tutor() {
           )}
           <div className="card rail-card mt-3" style={{ display: 'block' }}>
             <h3><IconBookmark size={15} /> Publicações guardadas</h3>
-            <p className="muted small">Os posts que guardaste com 🔖 vivem no teu perfil.</p>
+            <p className="muted small">As publicações guardadas com o marcador estão no teu perfil.</p>
             <Link to="/perfil?tab=saved" className="btn btn-outline btn-sm mt-2">Ver no Perfil</Link>
           </div>
         </div>

@@ -41,7 +41,7 @@ export default function Messages() {
           <Empty
             icon={<IconChat size={40} />}
             title="Sem conversas"
-            hint="Começa uma mensagem direta ou cria um grupo de estudo com a tua turma."
+            hint="Inicia uma mensagem direta ou cria um grupo de estudo."
           />
         ) : (
           <div className="conv-list">
@@ -59,7 +59,7 @@ export default function Messages() {
                       {c.type === 'group' && <span className="tag tag-muted">{c.members.length} membros</span>}
                     </span>
                     <span className="conv-last">
-                      {c.lastMessage ? `${c.type === 'group' ? c.lastMessage.author.username + ': ' : ''}${c.lastMessage.content}` : 'Ainda sem mensagens — diz olá!'}
+                      {c.lastMessage ? `${c.type === 'group' ? c.lastMessage.author.username + ': ' : ''}${c.lastMessage.content}` : 'Ainda sem mensagens.'}
                     </span>
                   </span>
                   <span className="conv-meta">

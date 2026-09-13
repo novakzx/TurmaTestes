@@ -51,7 +51,7 @@ function Poll({ post, onChanged }) {
           <button key={o.id} className={`poll-opt ${mine ? 'poll-opt-voted' : ''}`} onClick={() => vote(o.id)} disabled={voted}>
             {voted && <span className="poll-fill" style={{ width: `${pct}%` }} />}
             <span>
-              <span>{mine ? '✓ ' : ''}{o.text}</span>
+              <span>{o.text}{mine ? ' — o teu voto' : ''}</span>
               {voted && <strong>{pct}%</strong>}
             </span>
           </button>
@@ -129,7 +129,7 @@ export default function PostCard({ post, onChange, onDelete, highlight = false }
   const toggleSave = async () => {
     const d = await api.post(`/posts/${post.id}/save`);
     patch({ savedByMe: d.saved });
-    toast(d.saved ? 'Guardado nos teus Apontamentos 🔖' : 'Removido dos Apontamentos');
+    toast(d.saved ? 'Guardado nos Apontamentos.' : 'Removido dos Apontamentos.');
   };
 
   const share = async () => {

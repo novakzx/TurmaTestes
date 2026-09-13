@@ -1,4 +1,4 @@
-# Turma+ 🎒
+# Turma+
 
 **Aplicação web progressiva (PWA) para estudantes em Portugal** — feed comunitário, calendário oficial (feriados, férias escolares e greves), mensagens de turma em tempo real, apoio ao estudo gratuito e perfis pessoais. Design plano e amigável (sem gradientes), mobile-first e instalável.
 
@@ -11,14 +11,14 @@
 
 | Área | Destaques |
 |---|---|
-| 📰 **Feed** | Publicações com temas por disciplina, `#hashtags`, sondagens, gostos, comentários, guardados (🔖), filtros "Para ti / A seguir", tendências e scroll infinito |
-| 📅 **Calendário oficial** | 13 feriados nacionais + Carnaval (móveis calculados pelo algoritmo da Páscoa), feriados regionais (Açores/Madeira) e municipais (24 municípios), períodos letivos, férias, exames e greves por âmbito; exportação **.ics**; lembretes push na véspera |
-| 💬 **Mensagens** | DMs e grupos de estudo com entrega em tempo real (SSE), badges de não-lidas, envio offline com reenvio automático (Background Sync) |
-| 📖 **Apoio ao estudo** | "Explicador" sem cara de chatbot: **fichas de estudo** do currículo português (resposta → passos → conceitos → exemplo → exercícios), calculadora científica, resolvedor de equações com passos, derivadas e **planos de estudo** até ao exame. Gratuito e offline |
-| 👤 **Perfil** | Publicações, apontamentos guardados, seguidores, perfil privado, edição completa |
-| 🔔 **Notificações** | Centro in-app + **Web Push (VAPID)**; lembretes de feriados/greves do teu município |
-| 📱 **PWA** | Instalável, offline-first (service worker Workbox), atalhos, temas claro/escuro |
-| 🛡️ **Segurança/RGPD** | JWT httpOnly + CSRF, bcrypt, rate limits, CSP/HSTS, auditoria, exportação e eliminação de dados (arts. 15/17/20) |
+| **Feed** | Publicações com temas por disciplina, `#hashtags`, sondagens, gostos, comentários, guardados, filtros "Para ti / A seguir", tendências e scroll infinito |
+| **Calendário oficial** | 13 feriados nacionais + Carnaval (móveis calculados pelo algoritmo da Páscoa), feriados regionais (Açores/Madeira) e municipais (24 municípios), períodos letivos, férias, exames e greves por âmbito; exportação **.ics**; lembretes push na véspera |
+| **Mensagens** | DMs e grupos de estudo com entrega em tempo real (SSE), badges de não-lidas, envio offline com reenvio automático (Background Sync) |
+| **Apoio ao estudo** | "Explicador" sem cara de chatbot: **fichas de estudo** do currículo português (resposta → passos → conceitos → exemplo → exercícios), calculadora científica, resolvedor de equações com passos, derivadas e **planos de estudo** até ao exame. Gratuito e offline |
+| **Perfil** | Publicações, apontamentos guardados, seguidores, perfil privado, edição completa |
+| **Notificações** | Centro in-app + **Web Push (VAPID)**; lembretes de feriados/greves do teu município |
+| **PWA** | Instalável, offline-first (service worker Workbox), atalhos, temas claro/escuro |
+| **Segurança e RGPD** | JWT httpOnly + CSRF, bcrypt, rate limits, CSP/HSTS, auditoria, exportação e eliminação de dados (arts. 15/17/20) |
 
 ## Arranque rápido
 
@@ -84,4 +84,4 @@ server/   API Express (src/routes, services, middleware, db)
 docs/     Escopo · Arquitetura · Segurança/RGPD · Roadmap
 ```
 
-Licença: uso educativo/demonstrativo. Feito por e para estudantes em Portugal 🇵🇹
+Licença: uso educativo e de demonstração.

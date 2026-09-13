@@ -113,11 +113,11 @@ export function AboutPage() {
       <p className="updated">Versão 1.0.0 (demonstração)</p>
       <p>O Turma+ é uma plataforma integrada para estudantes portugueses — do básico ao secundário, do continente às regiões autónomas:</p>
       <ul>
-        <li>📰 <strong>Feed</strong> comunitário com temas por disciplina, sondagens e hashtags;</li>
-        <li>📅 <strong>Calendário oficial</strong>: 13 feriados nacionais + regionais (Açores e Madeira) + municipais, períodos letivos, férias, exames e greves, com exportação .ics;</li>
-        <li>💬 <strong>Mensagens</strong> diretas e grupos de estudo em tempo real (SSE), com notificações push;</li>
-        <li>📖 <strong>Apoio ao estudo</strong>: fichas estruturadas do currículo português, calculadora científica, resolvedor de equações, derivadas e planos de estudo — gratuito e offline;</li>
-        <li>👤 <strong>Perfil</strong> com apontamentos guardados, definições de privacidade e exportação/eliminação de dados (RGPD).</li>
+        <li><strong>Feed</strong> comunitário com temas por disciplina, sondagens e hashtags;</li>
+        <li><strong>Calendário oficial</strong>: 13 feriados nacionais + regionais (Açores e Madeira) + municipais, períodos letivos, férias, exames e greves, com exportação .ics;</li>
+        <li><strong>Mensagens</strong> diretas e grupos de estudo em tempo real (SSE), com notificações push;</li>
+        <li><strong>Apoio ao estudo</strong>: fichas estruturadas do currículo português, calculadora científica, resolvedor de equações, derivadas e planos de estudo — gratuito e offline;</li>
+        <li><strong>Perfil</strong> com apontamentos guardados, definições de privacidade e exportação/eliminação de dados (RGPD).</li>
       </ul>
       <h2>Tecnologia</h2>
       <p>React + Vite (PWA instalável, offline-first), Node.js/Express, SQLite (migração PostgreSQL documentada), JWT + CSRF + rate limiting, Web Push/VAPID, SSE. Documentação completa em <code>docs/</code> e <code>README.md</code> no repositório.</p>

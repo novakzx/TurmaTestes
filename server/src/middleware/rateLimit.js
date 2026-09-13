@@ -28,7 +28,7 @@ export const tutorLimiter = rateLimit({
   limit: 60,
   standardHeaders: 'draft-7',
   legacyHeaders: false,
-  handler: json('Limite de dúvidas por hora atingido. Faz uma pausa para estudar 🙂'),
+  handler: json('Limite de pedidos por hora atingido. Tenta novamente mais tarde.'),
 });
 
 /** Limite de envio de mensagens (mitiga spam). */

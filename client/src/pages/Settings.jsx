@@ -50,7 +50,7 @@ export default function Settings() {
         });
         await api.post('/notifications/push/subscribe', sub.toJSON());
         await updateMe({ pushEnabled: true });
-        toast('Notificações push ativas 🔔');
+        toast('Notificações push ativadas.');
       } else {
         const reg = await navigator.serviceWorker?.ready;
         const sub = await reg?.pushManager?.getSubscription();
@@ -76,7 +76,7 @@ export default function Settings() {
       a.download = 'turma-mais-os-meus-dados.json';
       a.click();
       URL.revokeObjectURL(url);
-      toast('Os teus dados foram descarregados 📦');
+      toast('Exportação concluída. Verifica os downloads.');
     } catch {
       toast('Falha na exportação.', 'danger');
     } finally {
@@ -170,9 +170,9 @@ export default function Settings() {
         </div>
       </section>
 
-      <p className="center muted small mt-3">Turma+ · versão 1.0.0 · feito por e para estudantes em Portugal 🇵🇹</p>
+      <p className="center muted small mt-3">Turma+ · versão 1.0.0</p>
 
-      {pwOpen && <PasswordModal onClose={() => setPwOpen(false)} onDone={() => { setPwOpen(false); toast('Palavra-passe alterada 🔐'); }} />}
+      {pwOpen && <PasswordModal onClose={() => setPwOpen(false)} onDone={() => { setPwOpen(false); toast('Palavra-passe alterada.'); }} />}
       {deleteOpen && <DeleteModal onClose={() => setDeleteOpen(false)} onDeleted={() => navigate('/entrar')} />}
     </div>
   );
@@ -212,7 +212,7 @@ function DeleteModal({ onClose, onDeleted }) {
     setBusy(true);
     try {
       await api.del('/gdpr/account', { password });
-      toast('Conta eliminada. Até já 👋');
+      toast('Conta eliminada.');
       await logout();
       onDeleted();
     } catch (e) { toast(e.message, 'danger'); } finally { setBusy(false); }

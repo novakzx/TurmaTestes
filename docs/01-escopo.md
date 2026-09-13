@@ -33,14 +33,14 @@
 |---|---|---|
 | Feed dinâmico | Coluna central estilo Twitter/Instagram; publicação de texto com tema por disciplina, `#hashtags` clicáveis e sondagens (até 4 opções) | Publicar → aparece no topo; votar → barras com % |
 | Filtros | Separadores **Para ti / A seguir**; filtro por tema e por hashtag (via URL partilhável) | `/?hashtag=matematicaa` mostra só essas publicações |
-| Interações | Gosto, comentários aninhados por post, guardar (🔖 → Apontamentos), partilhar (Web Share API / clipboard), apagar (próprio ou admin) | Contagens atualizam sem reload |
+| Interações | Gosto, comentários aninhados por post, guardar (marcador, em Apontamentos), partilhar (Web Share API / clipboard), apagar (próprio ou admin) | Contagens atualizam sem reload |
 | Descoberta | Barra lateral (desktop) com tendências (hashtags 7 dias), próximos eventos do calendário e sugestões de pessoas | Clique navega/filtra |
 | Paginação | Cursor + scroll infinito (IntersectionObserver) | Carrega +15 ao aproximar do fim |
 
 ### 2.2 Calendário oficial
 | Requisito | Implementação | Aceitação |
 |---|---|---|
-| Feriados nacionais | 13 feriados legais + Carnaval (facultativo), com **cálculo de móveis** (Páscoa pelo algoritmo gregoriano anónimo) | Páscoa 2026 = 5 abr; Corpo de Deus 2026 = 4 jun ✓ |
+| Feriados nacionais | 13 feriados legais + Carnaval (facultativo), com **cálculo de móveis** (Páscoa pelo algoritmo gregoriano anónimo) | Páscoa 2026 = 5 abr; Corpo de Deus 2026 = 4 jun |
 | Feriados regionais | Açores (2.ª feira do Espírito Santo), Madeira (1 jul + Primeira Oitava) | Ativados pelo distrito do perfil |
 | Feriados municipais | Lista curada de 24 municípios (Lisboa 13 jun, Porto 24 jun, Coimbra 4 jul, …) com origem identificada | Seletor no calendário; escolha grava-se no perfil |
 | Calendário escolar | Períodos letivos, interrupções (Natal/Páscoa) e exames (1.ª/2.ª fase) — **marcados como estimativa** | Badge "estimativa" visível; aviso permanente |
@@ -56,7 +56,7 @@
 | Grupos | Criação com título + pesquisa de membros; lista de membros; autor por mensagem | Grupos de turma e de estudo |
 | Tempo real | **SSE** (`EventSource`) — mensagens e notificações instantâneas, reconexão automática | Mensagem chega <1 s entre separadores |
 | Não lidas | Badges por conversa e total na navegação; leitura ao abrir | Badge limpa ao entrar na conversa |
-| Offline | Envio em fila **Background Sync** (service worker) reenvia quando volta a rede | Mensagem pendente marcada ⏳ e entregue depois |
+| Offline | Envio em fila **Background Sync** (service worker) reenvia quando volta a rede | Mensagem pendente identificada no ecrã e entregue depois |
 | Abusos | Rate limit 30 msg/min/utilizador; tamanho máx. 2000 carateres; só membros acedem | 403/429 corretos |
 
 ### 2.4 Apoio ao estudo ("IA" sem cara de IA)

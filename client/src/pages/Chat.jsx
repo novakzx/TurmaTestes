@@ -168,7 +168,7 @@ export default function Chat() {
                 {conv.type === 'group' && !m.mine && g.showAuthor ? <Avatar user={m.author} size={28} style={{ marginTop: 2 }} /> : <span style={{ width: 0 }} />}
                 <div className="col">
                   <div className="bubble" style={m.pending ? { opacity: 0.6 } : undefined}>
-                    {m.content}{m.pending ? ' ⏳' : ''}
+                    {m.pending ? `${m.content} (a enviar…)` : m.content}
                   </div>
                   {g.showTime && <span className="msg-time">{fmtTime(m.createdAt)}</span>}
                 </div>

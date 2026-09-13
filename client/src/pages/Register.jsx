@@ -30,7 +30,7 @@ export default function Register() {
     setError('');
     try {
       await register({ ...form, username: form.username.toLowerCase().trim(), email: form.email.toLowerCase().trim() });
-      toast('Conta criada — bem-vindo(a) ao Turma+ 🎉');
+      toast('Conta criada com sucesso.');
       navigate('/', { replace: true });
     } catch (err) {
       setError(err.data?.details?.map((d) => d.message).join(' · ') || err.message);
@@ -45,7 +45,7 @@ export default function Register() {
         <div className="auth-logo">
           <span className="logo-mark" aria-hidden="true">T<span className="logo-plus">+</span></span>
           <h1>Criar conta</h1>
-          <p>Gratuita, para estudantes em Portugal. Precisamos do mínimo de dados — ver a <Link to="/privacidade" style={{ color: 'var(--brand-ink)', fontWeight: 700 }}>Política de Privacidade</Link>.</p>
+          <p>O registo é gratuito e pede apenas os dados essenciais. Consulta a <Link to="/privacidade" style={{ color: 'var(--brand-ink)', fontWeight: 700 }}>Política de Privacidade</Link>.</p>
         </div>
 
         <form onSubmit={submit} noValidate>

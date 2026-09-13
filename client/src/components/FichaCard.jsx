@@ -101,15 +101,15 @@ export default function FichaCard({ entry, onSave, onDismiss, collapsed = false 
                   <div className="sol-toggle">
                     {ex.dica && (
                       <button className="btn btn-outline btn-sm" onClick={() => setRevealed((r) => ({ ...r, [`d${entry.id}-${i}`]: !r[`d${entry.id}-${i}`] }))}>
-                        {revealed[`d${entry.id}-${i}`] ? 'Esconder dica' : '💡 Dica'}
+                        {revealed[`d${entry.id}-${i}`] ? 'Esconder dica' : 'Ver dica'}
                       </button>
                     )}
                     <button className="btn btn-soft btn-sm" onClick={() => setRevealed((r) => ({ ...r, [`s${entry.id}-${i}`]: !r[`s${entry.id}-${i}`] }))}>
                       {revealed[`s${entry.id}-${i}`] ? 'Esconder solução' : 'Ver solução'}
                     </button>
                   </div>
-                  {ex.dica && revealed[`d${entry.id}-${i}`] && <div className="sol" style={{ background: 'var(--accent-soft)', color: '#b45309' }}>💡 {ex.dica}</div>}
-                  {revealed[`s${entry.id}-${i}`] && <div className="sol">✓ {ex.solucao}</div>}
+                  {ex.dica && revealed[`d${entry.id}-${i}`] && <div className="sol" style={{ background: 'var(--accent-soft)', color: '#b45309' }}>Dica: {ex.dica}</div>}
+                  {revealed[`s${entry.id}-${i}`] && <div className="sol">Solução: {ex.solucao}</div>}
                 </div>
               ))}
             </div>

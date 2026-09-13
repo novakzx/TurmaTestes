@@ -135,12 +135,12 @@ export default function Profile() {
             : fichas.map((h) => <FichaCard key={h.id} entry={h} collapsed onSave={async (id) => { await api.post(`/tutor/fichas/${id}/save`); const d = await api.get('/tutor/fichas?saved=1'); setFichas(d.fichas); }} />)}
           <h3 className="mt-4 mb-2" style={{ fontSize: 14 }}>Publicações guardadas</h3>
           {savedPosts === null ? <div className="block-loader"><Spinner /></div>
-            : savedPosts.length === 0 ? <p className="muted small">Toca em 🔖 numa publicação para a guardares aqui.</p>
+            : savedPosts.length === 0 ? <p className="muted small">As publicações que guardares com o marcador aparecem aqui.</p>
             : savedPosts.map((p) => <PostCard key={p.id} post={p} onChange={updatePost} onDelete={(id) => setSavedPosts((ps) => ps.filter((x) => x.id !== id))} />)}
         </div>
       )}
 
-      {editOpen && <EditProfileModal profile={profile} onClose={() => setEditOpen(false)} onSaved={async (u) => { setEditOpen(false); await refresh(); load(); toast('Perfil atualizado ✅'); }} />}
+      {editOpen && <EditProfileModal profile={profile} onClose={() => setEditOpen(false)} onSaved={async (u) => { setEditOpen(false); await refresh(); load(); toast('Perfil atualizado.'); }} />}
     </div>
   );
 }
@@ -161,7 +161,7 @@ function FollowBtn({ profile, onChanged }) {
   };
   return (
     <button className={`btn btn-sm ${profile.isFollowing ? 'btn-outline' : 'btn-primary'}`} onClick={toggle} disabled={busy}>
-      {profile.isFollowing ? 'A seguir ✓' : 'Seguir'}
+      {profile.isFollowing ? 'A seguir' : 'Seguir'}
     </button>
   );
 }

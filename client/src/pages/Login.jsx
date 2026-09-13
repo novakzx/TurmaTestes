@@ -20,7 +20,7 @@ export default function Login() {
     setError('');
     try {
       await login(identifier.trim(), password);
-      toast('Bem-vindo(a) de volta 👋');
+      toast('Sessão iniciada.');
       navigate('/', { replace: true });
     } catch (err) {
       setError(err.message);
@@ -40,7 +40,7 @@ export default function Login() {
         <div className="auth-logo">
           <span className="logo-mark" aria-hidden="true">T<span className="logo-plus">+</span></span>
           <h1>Turma<span className="logo-plus">+</span></h1>
-          <p>A app dos estudantes portugueses — feed, calendário oficial, mensagens de turma e apoio ao estudo.</p>
+          <p>Feed, calendário oficial, mensagens de turma e apoio ao estudo para estudantes em Portugal.</p>
         </div>
 
         <form onSubmit={submit} noValidate>

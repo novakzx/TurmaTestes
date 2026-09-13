@@ -41,7 +41,7 @@ export default function Composer({ open, onClose, onPosted, compact = false }) {
       }
       const d = await api.post('/posts', body);
       onPosted?.(d.post);
-      toast('Publicação partilhada 🎉');
+      toast('Publicação partilhada.');
       reset();
       onClose?.();
     } catch (err) {

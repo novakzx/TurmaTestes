@@ -143,7 +143,7 @@ export default function Feed() {
           <Empty
             icon={<IconUsers size={40} />}
             title={filter === 'following' ? 'Ainda não segues ninguém' : 'Sem publicações'}
-            hint={filter === 'following' ? 'Segue colegas no separador "Para ti" ou nas sugestões.' : 'Sê a primeira pessoa a publicar alguma coisa!'}
+            hint={filter === 'following' ? 'Segue colegas no separador "Para ti" ou nas sugestões da barra lateral.' : 'Partilha a primeira publicação com a comunidade.'}
           />
         ) : (
           posts.map((p) => (
@@ -156,7 +156,7 @@ export default function Feed() {
 
         <div ref={sentinel} />
         {loadingMore && <div className="block-loader"><Spinner /></div>}
-        {!nextCursor && posts.length > 0 && <p className="center muted small" style={{ padding: '10px 0 20px' }}>Chegaste ao fim — por agora 🎉</p>}
+        {!nextCursor && posts.length > 0 && <p className="center muted small" style={{ padding: '10px 0 20px' }}>Não há mais publicações para mostrar.</p>}
       </div>
 
       {/* Barra lateral (desktop) */}
